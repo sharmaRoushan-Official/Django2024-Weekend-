@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Form</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper {
+            background: white;
+            width: 450px;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+            animation: fade 1s ease-in;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            outline: none;
+            margin-bottom: 15px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff5e62;
+            box-shadow: 0px 0px 10px rgba(255,94,98,0.3);
+        }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+            padding: 14px;
+            color: white;
+            border: none;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #238db2, #3a5fd4);
+        }
+
+        .emoji {
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    
+    <div class="emoji">💳💰</div>
+    <h2>Payment Details</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Amount *</label>
+        <input type="number" name="amount" placeholder="Enter amount" required>
+
+        <label>Payment Mode *</label>
+        <select name="payment_mode" required>
+            <option value="" disabled selected>Select payment method</option>
+            <option value="Cash">Cash</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="PayTM">PayTM</option>
+            <option value="Credit Card">Credit Card</option>
+        </select>
+
+        <label>Select Student *</label>
+        <select name="student" required>
+            <option value="" disabled selected>Select Student</option>
+
+            <!-- Loop through students dynamically -->
+            {% for stu in students %}
+                <option value="{{ stu.id }}" name="txtID">{{ stu.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btnPay">Submit Payment 🚀</button>
+    </form>
+
+</div>
+
+</body>
+</html>

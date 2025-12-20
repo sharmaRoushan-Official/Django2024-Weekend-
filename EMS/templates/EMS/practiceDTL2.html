@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice DTL</title>
+</head>
+<body>
+    <h1>Practice Django Template Language</h1>
+    <hr>
+    <h1>1.WAP to check the number is equal to 100 or not.</h1>
+    <!-- {{val}} -->
+
+    <!-- {% if val == 100 %}
+    <h1>{{val}} is equal to 100.</h1>
+    {% else %}
+    <h1>{{val}} is not equal to 100.</h1>
+    {% endif %} -->
+    <hr>
+
+    <h2>2.Write to check smallest in two numbers.</h2>
+
+    <!-- {% if a < b %}
+    <h1>{{a}} is smaller than {{b}}</h1>
+    {% else %}
+    <h1>{{b}} is smaller than {{a}}</h1>
+    {% endif %} -->
+    <hr>
+
+    
+    {% if a > b and a > c %}
+    <h1>{{a}} is largest among {{b}} and {{c}} </h1>
+    {% elif b > a and b > c %}
+    <h1>{{b}} is largest among {{a}} and {{c}} </h1>
+    {% else %}
+    <h1>{{c}} is largest among {{a}} and {{b}} </h1>
+    {% endif %}
+    <hr>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice2</title>
+</head>
+<body>
+    <h1>1. Write a DTL template snippet to check the **smallest of two numbers**.</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="">Enter First Number: </label>
+            <input type="text" name="num1" placeholder="Enter First Number" value="{{num1}}">
+        </div>
+        <br>
+        <div>
+            <label for="">Enter Second Number: </label>
+            <input type="text" name="num2" placeholder="Enter Second Number" value="{{num2}}">
+        </div>
+        <br>
+        <div>
+            <button type="submit">Click</button>
+        </div>
+
+
+    </form>
+    <br>
+    <div>
+        {% if num1 < num2 %}
+        <h1>{{num1}} is smaller than {{num2}} </h1>
+        {% else %}
+        <h1>{{num2}} is smaller than {{num1}} </h1>
+        {% endif %}
+    </div>
+
+    <!-- {{num1}} {{num2}} -->
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: rgb(222, 230, 155);
+        }
+    </style>
+</head>
+
+<body align="center">
+    <h1>**WELCOME TO CALCULATOR PROGRAM**</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table border="2px solid black" align="center" width="25%">
+            <tr>
+                <th>Enter First Number:</th>
+                <td><input type="text" name="txtFirst" value="{{a}}"></td>
+            </tr>
+            <tr>
+                <th>Enter Second Number:</th>
+                <td><input type="text" name="txtSecond" value="{{b}}"></td>
+            </tr>
+            <tr>
+                <td>Result:</td>
+                <td><input type="text" name="txtThird" value="{{sum}}"></td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="btnSum">SUM</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

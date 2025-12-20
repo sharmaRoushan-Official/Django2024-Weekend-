@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #c9e8ff, #e9ffd9);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #002b63;
+            background: #9fc8ff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 2px solid #0077cc;
+            outline: none;
+            width: 180px;
+        }
+
+        input:focus {
+            border-color: #ff6600;
+        }
+
+        button {
+            padding: 8px 15px;
+            border: none;
+            background: #0077cc;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff6600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            background: #ffffff;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        th {
+            background: #0047b3;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #e6f3ff;
+        }
+
+        tr:nth-child(odd) {
+            background: #ffffff;
+        }
+
+        tr:hover {
+            background: #ffefcc;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h1>**STUDENT WISE PAYMENT DETAILS**</h1>
+
+        <label for="">Enter student ID:</label>
+        <input type="text" name="txtID" value="{{stu.id}}">
+        <button type="submit">Get Payment Details</button>
+
+        <table border="2px solid black">
+            <tr>
+                <th>S.NO</th>
+                <th>NAME</th>
+                <th>AMOUNT</th>
+                <th>PAYMENT_MODE</th>
+                <th>DATE</th>
+            </tr>
+            {% for pay in payments %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{stu.name}}</td>
+                <td>{{pay.amount}}</td>
+                <td>{{pay.payment_mode}}</td>
+                <td>{{pay.payment_date}}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="color: gray; text-align:center;">
+                    No payment records found.
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+</body>
+
+</html>
