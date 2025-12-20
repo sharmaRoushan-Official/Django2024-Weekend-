@@ -77,7 +77,9 @@ def view_courseAdd(request):
 
                 c_obj.student.add(s_obj)
 
-                return HttpResponse("<h1 style='color:green'>Student Added Successfully!</h1>")
+                # return HttpResponse("<h1 style='color:green'>Student Added Successfully!</h1>")
+                resp = render(request,"SMS/addCourseSuccess.html")
+                return resp
 
             except student.DoesNotExist:
                 return HttpResponse("<h2 style='color:red'>Student not found</h2>")
