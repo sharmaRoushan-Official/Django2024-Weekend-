@@ -56,8 +56,37 @@ def view_student_wise_paymentDetails(request):
         return resp
     
 
-def courseDetails(request):
-    c = Course()
+def view_courseAdd(request):
+    if request.method == "GET":
+        c = Course.objects.all()
+        s = student.objects.all()
+        d1 = {'course':c,'student':s}
+        resp = render(request,'SMS/addCourse.html',context=d1)
+        return resp
+    if request.method == "POST":
+        if 'btnAddCourse' in request.POST:
+            s_id = request.POST.get('s_id')
+            c_id = request.POST.get('c_id')
+
+            if not s_id or not c_id:
+                return HttpResponse("<h2 style='color:red'>Please select both Student and Course</h2>")
+
+            try:
+                s_obj = student.objects.get(id=s_id)
+                c_obj = Course.objects.get(id=c_id)
+
+                c_obj.student.add(s_obj)
+
+                return HttpResponse("<h1 style='color:green'>Student Added Successfully!</h1>")
+
+            except student.DoesNotExist:
+                return HttpResponse("<h2 style='color:red'>Student not found</h2>")
+
+            except Course.DoesNotExist:
+                return HttpResponse("<h2 style='color:red'>Course not found</h2>")
+
+
+
 
 
 
