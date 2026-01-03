@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add Payment</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="student">Student:</label>
+        <select name="student" id="student">
+            <option value="">Select Student</option>
+            {% for student in students %}
+
+            <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount"><br><br>
+
+        <label for="payment_mode">Payment Mode:</label>
+
+        <select name="payment_mode">
+            <option value="">Select Payment Mode</option>
+            {% for value, label in payment_modes %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <input type="submit" value="Add Payment">
+    </form>
+</body>
+
+</html>
