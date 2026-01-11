@@ -10,4 +10,5 @@ urlpatterns = [
     path('addCourse/',view_courseAdd,name="addCourse"),
     path('addPayment/',viewAddPayment,name="addPayment"),
     path('stuFrm/',view_student_frm,name="stuFrm"),
+    path('staticEx/',viewStatic,name="staticEx"),
 ]

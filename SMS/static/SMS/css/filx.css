@@ -1,0 +1,15 @@
+body{
+    background-color: lightyellow;
+    font-style: italic;
+    font-weight: bold;
+    color: darkblue;
+}
+hr{
+    border: 2px dashed green;
+}
+
+h1{
+    color: darkred;
+    text-align: center;
+    text-decoration: underline;
+}

@@ -147,6 +147,10 @@ def view_student_frm(request):
             return resp
 
 
+def viewStatic(request):
+    resp = render(request,"SMS/staticEx.html")
+    return resp
+
 
 
             

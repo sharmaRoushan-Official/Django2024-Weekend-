@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Example</title>
+    <!-- <link rel="stylesheet" href="http://127.0.0.1:8000/static/http://127.0.0.1:8000/static/SMS/css/filx.css"> -->
+    <link rel="stylesheet" href="{% static 'SMS/css/filx.css' %}">
+</head>
+<body>
+    <h1>Static Example</h1>
+    <hr>
+    <!-- <img src="http://127.0.0.1:8000/static/SMS/images/birds.jpg" alt="birds" width="500px" height="300px"> -->
+    <img src="{% static 'SMS/images/birds.jpg' %}" alt="birds" width="500px" height="250px">
+    <img src="{% static 'SMS/images/monkey.jpg' %}" alt="birds" width="500px" height="250px">
+    <img src="{% static 'SMS/images/cheetah.jpg' %}" alt="birds" width="500px" height="250px">
+    <img src="{% static 'SMS/images/multiple-cats.jpg' %}" alt="birds" width="500px" height="250px">
+    <img src="{% static 'SMS/images/nature.jpg' %}" alt="birds" width="500px" height="250px">
+    <img src="{% static 'SMS/images/seenary.jpg' %}" alt="birds" width="500px" height="250px">
+    <hr>
+    <div>
+        <button onclick="func();">Click Me</button>
+    </div>
+    
+</body>
+<script src="{% static 'SMS/js/func.js' %}"></script>
+</html>
