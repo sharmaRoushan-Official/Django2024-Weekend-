@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "EMS",  # this is your App Name here you registerd.
     "SMS", # this is your second created app i.e SMS.
+    "LMS",  # this is your third created app i.e LMS.
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # http://127.0.0.1:8000/static/
+
+
+
+import os
+
+# STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
