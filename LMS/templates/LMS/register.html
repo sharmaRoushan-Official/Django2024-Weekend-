@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 25px 0 10px;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        hr {
+            width: 60%;
+            border: none;
+            height: 2px;
+            background: rgba(255,255,255,0.6);
+            margin-bottom: 30px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table td {
+            padding: 12px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #38bdf8;
+        }
+
+        ul {
+            padding-left: 18px;
+            font-size: 13px;
+            color: #d1d5db;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Register Page</h1>
+    <hr>
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td>{{ form }}</td>
+            </tr>
+        </table>
+
+        <button type="submit">Register</button>
+        <button><a href="{% url 'home' %}">Back to Dashboard</a></button>
+    </form>
+
+</body>
+</html>
