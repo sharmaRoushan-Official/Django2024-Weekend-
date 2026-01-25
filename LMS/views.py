@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from .decorator import is_CheckinloginorRegister
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -11,7 +13,7 @@ def viewDashboard(request):
     resp = render(request, "LMS/dashboard.html")
     return resp
 
-
+@is_CheckinloginorRegister
 def viewRegister(request):
     if request.method == "GET":
         frm_unbound = UserCreationForm()
@@ -30,9 +32,9 @@ def viewRegister(request):
             resp = render(request, "LMS/register.html",context=d1)
             return resp
         
-
+@is_CheckinloginorRegister
 def viewLogin(request):
-    if request.method == "GET":
+    if request.method == "GET": 
         resp = render(request, "LMS/login.html")
         return resp
     elif request.method == "POST":
@@ -48,11 +50,13 @@ def viewLogin(request):
             resp = render(request, "LMS/login.html", context={"error":"Invalid Credentials"})
             return resp
 
+@login_required(login_url='login')
 def viewSecure1(request):
     resp = render(request, "LMS/secure1.html")
     return resp
 
 
+@login_required(login_url='login')
 def viewSecure2(request):
     resp = render(request, "LMS/secure2.html")
     return resp
@@ -66,6 +70,7 @@ def viewUnSecure2(request):
     resp = render(request, "LMS/unsecure2.html")
     return resp
 
+@login_required(login_url='login')
 def viewLogout(request):
     logout(request) # it removes the session for the user
     resp = render(request, "LMS/logout.html")
