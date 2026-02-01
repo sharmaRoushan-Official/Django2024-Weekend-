@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "EMS",  # this is your App Name here you registerd.
     "SMS", # this is your second created app i.e SMS.
     "LMS",  # this is your third created app i.e LMS.
+    "demoApi", # this is your fourth created app i.e demoApi.
+    "rest_framework", # this is for DRF
 ]
 
 MIDDLEWARE = [

@@ -99,4 +99,5 @@ urlpatterns = [
     path('EMS/',include("EMS.urls")), # 127.0.0.1:8000/EMS/
     path('SMS/',include("SMS.urls")), # http://127.0.0.1:8000/SMS/ 
     path('LMS/',include("LMS.urls")), # http://127.0.0.1:8000/LMS/
+    path('demoapi/',include("demoApi.urls")), # http://127.0.0.1:8000/demoapi/
 ]
