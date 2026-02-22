@@ -15,7 +15,11 @@ from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
     path('getTrainers/', get_trainers, name='gettrainers'),
+    path('deleteTrainer/<int:trainer_id>/', delete_trainer, name='deletetrainer'),
     # path('trainerBase/', TrainerAPI.as_view(), name='trainerBase'),
+
+    path('getEmployees/', get_employees, name='getemployees'),
+    path('postEmployees/', post_employees, name='postemployees'),
 ]
 
 

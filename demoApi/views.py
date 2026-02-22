@@ -6,10 +6,12 @@ from demoApi.serialize import TrainerSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from EMS.models import Employee
+from demoApi.serialize import EmployeeSerializer
 
 
 # Create your views here.
-@api_view(['GET','POST','PATCH'])
+@api_view(['GET','POST','PATCH','PUT'])
 def get_trainers(request):
     if request.method == 'GET':
         trainer = Trainer.objects.all()
@@ -36,6 +38,29 @@ def get_trainers(request):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    if request.method == 'PUT':
+        trainer_id = request.data.get('id')
+        try:
+            trainer = Trainer.objects.get(id=trainer_id)
+        except Trainer.DoesNotExist:
+            return Response({'error': 'Trainer not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = TrainerSerializer(trainer, data=request.data) # Full update
+        if serializer.is_valid():
+            serializer.save()  # Replace the existing trainer data with the new data
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def delete_trainer(request, trainer_id):
+    try:
+        trainer = Trainer.objects.get(id=trainer_id)
+    except Trainer.DoesNotExist:
+        return Response({'error': 'Trainer not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    trainer.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT) # Return status 204 No Content after successful deletion
+    
 
 # CBV [class based view]
 # class TrainerAPI(APIView):
@@ -49,6 +74,24 @@ def get_trainers(request):
 #     queryset = Trainer.objects.all()
 #     serializer_class = TrainerSerializer
 #     http_method_names = ['get', 'post', 'put', 'patch', 'delete'] # Allow all HTTP methods for this viewset
+
+
+
+@api_view(['GET'])
+def get_employees(request):
+    if request.method == 'GET':
+        employees = Employee.objects.all()
+        serializer = EmployeeSerializer(employees, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def post_employees(request):
+    if request.method == 'POST':
+        serializer = EmployeeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

@@ -1,10 +1,18 @@
 from rest_framework import serializers
+from EMS.models import Employee
 from demoApi.models import Trainer
+from EMS.models import Employee
 
 
 class TrainerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trainer
+        fields = '__all__'
+
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
         fields = '__all__'
 
 
